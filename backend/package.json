@@ -9,12 +9,18 @@
     "test:examples": "node --input-type=module --eval \"import('./api/examples.js').then(m => m.runAllExamples())\"",
     "start": "node server.js"
   },
-  "keywords": ["open-payments", "interledger", "payments", "ilp"],
+  "keywords": [
+    "open-payments",
+    "interledger",
+    "payments",
+    "ilp"
+  ],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.20.0",
   "dependencies": {
     "@interledger/open-payments": "^7.1.3",
+    "cors": "^2.8.5",
     "express": "^5.1.0"
   }
 }
