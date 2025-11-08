@@ -9,11 +9,7 @@ app.use(express.static('public'));
 app.post('/api', (req, res) => {
   const amount = req.body.amount;
   const user = req.body.user;
-
-
   initiatePayment(amount, user);
-
-
 })
 
 app.listen(3000, () => {
