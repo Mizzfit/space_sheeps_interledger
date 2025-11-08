@@ -1,12 +1,15 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Space Sheeps Interledger - Open Payments API Integration",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test-connection.js",
+    "test:examples": "node --input-type=module --eval \"import('./api/examples.js').then(m => m.runAllExamples())\"",
+    "start": "node server.js"
   },
-  "keywords": [],
+  "keywords": ["open-payments", "interledger", "payments", "ilp"],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.20.0",

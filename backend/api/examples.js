@@ -19,11 +19,11 @@ import { createQuote, getQuote } from './quotes.js';
 import { createOutgoingPayment, getOutgoingPayment } from './outgoingPayment.js';
 import { rotateAccessToken } from './tokens.js';
 
-// Example configuration
+// Example configuration - Your actual test wallet credentials
 const config = {
-  walletAddressUrl: "https://ilp.interledger-test.dev/chinotest",
+  walletAddressUrl: "https://ilp.interledger-test.dev/eb37db34",
   privateKeyPath: "private.key",
-  keyId: "e695f69a-877d-4885-a908-1935b754ecb1"
+  keyId: "e2903c1f-a02c-4ee2-aa8d-c2ea0d064180"
 };
 
 /**
@@ -32,7 +32,7 @@ const config = {
 export async function example1_getWalletInfo() {
   console.log("\n=== Example 1: Get Wallet Address Info ===\n");
   
-  const walletUrl = "https://ilp.interledger-test.dev/chinotest";
+  const walletUrl = "https://ilp.interledger-test.dev/eb37db34";
   const result = await getWalletAddressInfo(walletUrl, config);
   
   if (result.success) {
@@ -53,7 +53,7 @@ export async function example2_validateMultipleWallets() {
   console.log("\n=== Example 2: Validate Multiple Wallets ===\n");
   
   const wallets = [
-    "https://ilp.interledger-test.dev/chinotest",
+    "https://ilp.interledger-test.dev/eb37db34",
     "https://ilp.interledger-test.dev/user2test",
     "https://ilp.interledger-test.dev/invalid-wallet" // This one should fail
   ];
@@ -79,7 +79,7 @@ export async function example2_validateMultipleWallets() {
 export async function example3_createIncomingPayment() {
   console.log("\n=== Example 3: Create Incoming Payment ===\n");
   
-  const receiverUrl = "https://ilp.interledger-test.dev/chinotest";
+  const receiverUrl = "https://ilp.interledger-test.dev/eb37db34";
   
   // Step 1: Get wallet info
   const walletInfo = await getWalletAddressInfo(receiverUrl, config);
@@ -132,7 +132,7 @@ export async function example3_createIncomingPayment() {
 export async function example4_createQuote() {
   console.log("\n=== Example 4: Create Quote ===\n");
   
-  const senderUrl = "https://ilp.interledger-test.dev/chinotest";
+  const senderUrl = "https://ilp.interledger-test.dev/eb37db34";
   
   // First create an incoming payment (from example 3)
   const incomingPayment = await example3_createIncomingPayment();
@@ -185,7 +185,7 @@ export async function example4_createQuote() {
 export async function example5_listIncomingPayments() {
   console.log("\n=== Example 5: List Incoming Payments ===\n");
   
-  const walletUrl = "https://ilp.interledger-test.dev/chinotest";
+  const walletUrl = "https://ilp.interledger-test.dev/eb37db34";
   
   const walletInfo = await getWalletAddressInfo(walletUrl, config);
   if (!walletInfo.success) return;
@@ -221,7 +221,7 @@ export async function example5_listIncomingPayments() {
 export async function example6_checkPaymentStatus(paymentUrl) {
   console.log("\n=== Example 6: Check Payment Status ===\n");
   
-  const walletUrl = "https://ilp.interledger-test.dev/chinotest";
+  const walletUrl = "https://ilp.interledger-test.dev/eb37db34";
   
   const walletInfo = await getWalletAddressInfo(walletUrl, config);
   if (!walletInfo.success) return;
@@ -260,7 +260,7 @@ export async function example6_checkPaymentStatus(paymentUrl) {
 export async function example7_rotateToken() {
   console.log("\n=== Example 7: Rotate Access Token ===\n");
   
-  const walletUrl = "https://ilp.interledger-test.dev/chinotest";
+  const walletUrl = "https://ilp.interledger-test.dev/eb37db34";
   
   const walletInfo = await getWalletAddressInfo(walletUrl, config);
   if (!walletInfo.success) return;

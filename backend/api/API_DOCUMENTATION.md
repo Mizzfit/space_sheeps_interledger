@@ -34,11 +34,20 @@ All API functions require a configuration object with the following structure:
 
 ```javascript
 const config = {
-  walletAddressUrl: "https://ilp.interledger-test.dev/your-wallet-name",
-  privateKeyPath: "path/to/private.key",
-  keyId: "your-key-id-uuid"
+  walletAddressUrl: "https://ilp.interledger-test.dev/eb37db34",
+  privateKeyPath: "private.key",
+  keyId: "e2903c1f-a02c-4ee2-aa8d-c2ea0d064180"
 };
 ```
+
+**Your Private Key** (save this as `private.key` in your backend directory):
+```
+-----BEGIN PRIVATE KEY-----
+MC4CAQAwBQYDK2VwBCIEIIq7AvSyap022BGGlXzKeIywsxJAwt0m2iP1f4NobVNQ
+-----END PRIVATE KEY-----
+```
+
+> ⚠️ **Security Note**: This is a test wallet. Never commit private keys to version control or expose them in production environments.
 
 ### Installation
 
@@ -61,7 +70,7 @@ Retrieves public information about a wallet address, including authorization ser
 import { getWalletAddressInfo } from './api/walletAddress.js';
 
 const result = await getWalletAddressInfo(
-  "https://ilp.interledger-test.dev/alice",
+  "https://ilp.interledger-test.dev/eb37db34",
   config
 );
 
@@ -89,7 +98,7 @@ Retrieves the public keys bound to a wallet address for verification purposes.
 import { getWalletAddressKeys } from './api/walletAddress.js';
 
 const result = await getWalletAddressKeys(
-  "https://ilp.interledger-test.dev/alice",
+  "https://ilp.interledger-test.dev/eb37db34",
   config
 );
 ```
@@ -603,13 +612,13 @@ async function sendPayment(senderUrl, receiverUrl, amount, config) {
 
 // Usage
 const config = {
-  walletAddressUrl: "https://ilp.interledger-test.dev/alice",
+  walletAddressUrl: "https://ilp.interledger-test.dev/eb37db34",
   privateKeyPath: "private.key",
-  keyId: "your-key-id"
+  keyId: "e2903c1f-a02c-4ee2-aa8d-c2ea0d064180"
 };
 
 sendPayment(
-  "https://ilp.interledger-test.dev/alice",
+  "https://ilp.interledger-test.dev/eb37db34",
   "https://ilp.interledger-test.dev/bob",
   "5000", // $50.00
   config
