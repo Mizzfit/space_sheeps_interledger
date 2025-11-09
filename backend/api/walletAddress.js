@@ -1,5 +1,4 @@
-import { createAuthenticatedClient } from "@interledger/open-payments";
-import fs from 'fs';
+import { httpGet } from './httpClient.js';
 
 /**
  * Get wallet address information
@@ -15,15 +14,7 @@ import fs from 'fs';
  */
 export async function getWalletAddressInfo(walletAddressUrl, config) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
-
-    const walletAddress = await client.walletAddress.get({
-      url: walletAddressUrl
-    });
+    const walletAddress = await httpGet(walletAddressUrl);
 
     console.log("WALLET ADDRESS INFO:", walletAddress);
     
@@ -53,15 +44,8 @@ export async function getWalletAddressInfo(walletAddressUrl, config) {
  */
 export async function getWalletAddressKeys(walletAddressUrl, config) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
-
-    const keys = await client.walletAddress.getKeys({
-      url: walletAddressUrl
-    });
+    const url = `${walletAddressUrl.replace(/\/$/, '')}/jwks.json`;
+    const keys = await httpGet(url);
 
     console.log("WALLET ADDRESS KEYS:", keys);
     
@@ -88,16 +72,10 @@ export async function getWalletAddressKeys(walletAddressUrl, config) {
  */
 export async function validateWalletAddresses(walletAddressUrls, config) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
-
     const results = await Promise.all(
       walletAddressUrls.map(async (url) => {
         try {
-          const walletAddress = await client.walletAddress.get({ url });
+          const walletAddress = await httpGet(url);
           return {
             url,
             valid: true,

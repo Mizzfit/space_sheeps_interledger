@@ -275,19 +275,6 @@ if (!result.success) {
 - [Test Wallet](https://ilp.interledger-test.dev)
 - [GitHub Discussions](https://github.com/interledger/open-payments/discussions)
 
-## 📝 License
-
-This project uses the Open Payments SDK which is licensed under Apache-2.0.
-
-## 🤝 Contributing
-
-When adding new API endpoints:
-
-1. Create or update the appropriate module file
-2. Add JSDoc comments for all functions
-3. Follow the consistent response format
-4. Add examples to `examples.js`
-5. Update documentation
 
 ## ⚡ Quick Reference
 
@@ -302,7 +289,6 @@ When adding new API endpoints:
 
 ---
 
-**Version:** 1.0.0  
 **Last Updated:** November 2025  
 **Maintainer:** Space Sheeps Interledger Team
 

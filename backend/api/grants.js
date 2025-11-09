@@ -1,5 +1,12 @@
-import { createAuthenticatedClient, isFinalizedGrant, isPendingGrant } from "@interledger/open-payments";
-import fs from 'fs';
+import { httpPost, httpRequest } from './httpClient.js';
+
+const isFinalizedGrant = (grant) => Boolean(grant?.access_token?.value);
+const isPendingGrant = (grant) => Boolean(grant?.continue);
+
+const withClient = (config, body) => ({
+  ...body,
+  client: config.walletAddressUrl
+});
 
 /**
  * Request an incoming payment grant
@@ -11,15 +18,9 @@ import fs from 'fs';
  */
 export async function requestIncomingPaymentGrant(authServerUrl, config) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
-
-    const grant = await client.grant.request(
-      { url: authServerUrl },
-      {
+    const grant = await httpPost(
+      authServerUrl,
+      withClient(config, {
         access_token: {
           access: [
             {
@@ -28,7 +29,8 @@ export async function requestIncomingPaymentGrant(authServerUrl, config) {
             }
           ]
         }
-      }
+      }),
+      { config }
     );
 
     if (!isFinalizedGrant(grant)) {
@@ -61,15 +63,9 @@ export async function requestIncomingPaymentGrant(authServerUrl, config) {
  */
 export async function requestQuoteGrant(authServerUrl, config) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
-
-    const grant = await client.grant.request(
-      { url: authServerUrl },
-      {
+    const grant = await httpPost(
+      authServerUrl,
+      withClient(config, {
         access_token: {
           access: [
             {
@@ -78,7 +74,8 @@ export async function requestQuoteGrant(authServerUrl, config) {
             }
           ]
         }
-      }
+      }),
+      { config }
     );
 
     if (!isFinalizedGrant(grant)) {
@@ -114,12 +111,6 @@ export async function requestQuoteGrant(authServerUrl, config) {
  */
 export async function requestOutgoingPaymentGrant(authServerUrl, walletAddressId, debitAmount, config, requireInteraction = true) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
-
     const grantRequest = {
       access_token: {
         access: [
@@ -141,9 +132,10 @@ export async function requestOutgoingPaymentGrant(authServerUrl, walletAddressId
       };
     }
 
-    const grant = await client.grant.request(
-      { url: authServerUrl },
-      grantRequest
+    const grant = await httpPost(
+      authServerUrl,
+      withClient(config, grantRequest),
+      { config }
     );
 
     console.log("OUTGOING PAYMENT GRANT:", grant);
@@ -174,16 +166,14 @@ export async function requestOutgoingPaymentGrant(authServerUrl, walletAddressId
  */
 export async function continueGrant(continueUri, continueAccessToken, config) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
-
-    const finalizedGrant = await client.grant.continue({
-      url: continueUri,
-      accessToken: continueAccessToken
-    });
+    const finalizedGrant = await httpPost(
+      continueUri,
+      {},
+      {
+        config,
+        accessToken: continueAccessToken
+      }
+    );
 
     if (!isFinalizedGrant(finalizedGrant)) {
       throw new Error("Grant continuation did not result in finalized grant");
@@ -215,15 +205,11 @@ export async function continueGrant(continueUri, continueAccessToken, config) {
  */
 export async function revokeGrant(grantUrl, accessToken, config) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
-
-    await client.grant.cancel({
+    await httpRequest({
+      method: 'DELETE',
       url: grantUrl,
-      accessToken: accessToken
+      config,
+      accessToken
     });
 
     console.log("GRANT REVOKED:", grantUrl);

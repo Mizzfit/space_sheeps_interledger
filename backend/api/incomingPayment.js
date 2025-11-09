@@ -1,5 +1,4 @@
-import { createAuthenticatedClient } from "@interledger/open-payments";
-import fs from 'fs';
+import { httpGet, httpPost } from './httpClient.js';
 
 /**
  * Create an incoming payment
@@ -17,11 +16,9 @@ import fs from 'fs';
  */
 export async function createIncomingPayment(resourceServerUrl, accessToken, paymentDetails, config) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
+    const baseUrl = new URL(resourceServerUrl);
+    baseUrl.pathname = `${baseUrl.pathname.replace(/\/$/, '')}/incoming-payments`;
+    const url = baseUrl.href;
 
     const incomingPaymentRequest = {
       walletAddress: paymentDetails.walletAddress,
@@ -38,12 +35,13 @@ export async function createIncomingPayment(resourceServerUrl, accessToken, paym
       incomingPaymentRequest.externalRef = paymentDetails.externalRef;
     }
 
-    const incomingPayment = await client.incomingPayment.create(
+    const incomingPayment = await httpPost(
+      url,
+      incomingPaymentRequest,
       {
-        url: resourceServerUrl,
-        accessToken: accessToken
-      },
-      incomingPaymentRequest
+        config,
+        accessToken
+      }
     );
 
     console.log("INCOMING PAYMENT CREATED:", incomingPayment);
@@ -72,15 +70,10 @@ export async function createIncomingPayment(resourceServerUrl, accessToken, paym
  */
 export async function getIncomingPayment(incomingPaymentUrl, accessToken, config) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
-
-    const incomingPayment = await client.incomingPayment.get({
-      url: incomingPaymentUrl,
-      accessToken: accessToken
+    const incomingPayment = await httpGet(incomingPaymentUrl, {
+      config,
+      accessToken,
+      sign: true
     });
 
     console.log("INCOMING PAYMENT:", incomingPayment);
@@ -110,30 +103,30 @@ export async function getIncomingPayment(incomingPaymentUrl, accessToken, config
  */
 export async function listIncomingPayments(walletAddressUrl, accessToken, config, pagination = {}) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
+    const baseUrl = new URL(walletAddressUrl);
+    baseUrl.pathname = `${baseUrl.pathname.replace(/\/$/, '')}/incoming-payments`;
 
-    const listParams = {
-      url: walletAddressUrl,
-      accessToken: accessToken
-    };
+    const listUrl = baseUrl;
+
+    listUrl.searchParams.set('wallet-address', walletAddressUrl);
 
     if (pagination.first) {
-      listParams.first = pagination.first;
+      listUrl.searchParams.set('first', pagination.first);
     }
 
     if (pagination.last) {
-      listParams.last = pagination.last;
+      listUrl.searchParams.set('last', pagination.last);
     }
 
     if (pagination.cursor) {
-      listParams.cursor = pagination.cursor;
+      listUrl.searchParams.set('cursor', pagination.cursor);
     }
 
-    const incomingPayments = await client.incomingPayment.list(listParams);
+    const incomingPayments = await httpGet(listUrl.href, {
+      config,
+      accessToken,
+      sign: true
+    });
 
     console.log("INCOMING PAYMENTS LIST:", incomingPayments);
     
@@ -161,16 +154,15 @@ export async function listIncomingPayments(walletAddressUrl, accessToken, config
  */
 export async function completeIncomingPayment(incomingPaymentUrl, accessToken, config) {
   try {
-    const client = await createAuthenticatedClient({
-      walletAddressUrl: config.walletAddressUrl,
-      privateKey: config.privateKeyPath,
-      keyId: config.keyId
-    });
-
-    const completedPayment = await client.incomingPayment.complete({
-      url: incomingPaymentUrl,
-      accessToken: accessToken
-    });
+    const url = `${incomingPaymentUrl.replace(/\/$/, '')}/complete`;
+    const completedPayment = await httpPost(
+      url,
+      {},
+      {
+        config,
+        accessToken
+      }
+    );
 
     console.log("INCOMING PAYMENT COMPLETED:", completedPayment);
     

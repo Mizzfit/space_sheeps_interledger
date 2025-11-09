@@ -3,7 +3,7 @@
     "id": 1,
     "sector": "Spacecraft",
     "title": "Intergalactic Cruiser X-500",
-    "sellerWalletAddress": "https://ilp.interledger-test.dev/eb37db34",
+    "sellerWalletAddress": "https://ilp.interledger-test.dev/seller_example",
     "description": "A high-performance spacecraft designed for long-distance travel across galaxies. Features advanced propulsion systems and comfortable living quarters for extended missions.",
     "image": "https://picsum.photos/id/1041/400/300",
     "price": 500

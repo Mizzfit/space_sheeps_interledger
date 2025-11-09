@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';  // ← Agregar import
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -76,14 +77,30 @@ app.use((req, res, next) => {
 
 // Default configuration (can be overridden in request body)
 const defaultConfig = {
-  walletAddressUrl: "https://ilp.interledger-test.dev/eb37db34",
+  walletAddressUrl: "https://ilp.interledger-test.dev/seller_example",
   privateKeyPath: "private.key",
-  keyId: "e2903c1f-a02c-4ee2-aa8d-c2ea0d064180"
+  keyId: "a56111ec-2936-45d7-b17b-9579dc77cfed"
 };
 
 // Helper function to get config from request
 const getConfig = (req) => {
-  return req.body.config || defaultConfig;
+  if (req.body?.config) {
+    return req.body.config;
+  }
+
+  if (req.query?.config) {
+    if (typeof req.query.config === 'string') {
+      try {
+        return JSON.parse(req.query.config);
+      } catch (error) {
+        console.warn('Failed to parse config from query string:', error);
+      }
+    } else {
+      return req.query.config;
+    }
+  }
+
+  return defaultConfig;
 };
 
 // ============================================================================
@@ -270,54 +287,301 @@ app.get('/api/referal/webhook', (req, res) => {
   }
 });
 
-//Endpoint that generates a link to buy on openpayment that recieves mywallet and product id (takes seller wallet from products.json)
+//Endpoint that generates a link to buy on openpayment that recieves referer id and product id (takes seller wallet from products.json)
+// 95% of the price is the seller's price, 5% is the referral's price
 app.get('/api/referal/link', async (req, res) => {
   try {
-    const { mywallet, productId } = req.query;
-    
-    // Validate required parameters
-    if (!mywallet || !productId) {
+    const { productId, refererId } = req.query;
+
+    if (!productId || !refererId) {
       return res.status(400).json({
         success: false,
-        error: 'mywallet and productId are required'
+        error: 'productId and refererId are required'
       });
     }
-    
-    // Get product from products.json
+
+    const config = getConfig(req);
+
     const productsPath = path.join(__dirname, 'products.json');
-    const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
-    const product = products.find(p => p.id == productId);
-    
+    let products;
+    try {
+      const productsRaw = fs.readFileSync(productsPath, 'utf8');
+      products = JSON.parse(productsRaw);
+    } catch (error) {
+      console.error('Error reading products catalog:', error);
+      return res.status(500).json({
+        success: false,
+        error: 'Unable to load products catalog'
+      });
+    }
+
+    const product = products.find((item) => String(item.id) === String(productId));
     if (!product) {
       return res.status(404).json({
         success: false,
-        error: 'Product not found'
+        error: `Product with id ${productId} not found`
       });
     }
-    
-    // Generate payment link using the module
-    const paymentLink = await generatePaymentLink(
-      product.price,
-      mywallet,
-      product.sellerWalletAddress,
-      defaultConfig
+
+    if (!product.sellerWalletAddress) {
+      return res.status(400).json({
+        success: false,
+        error: 'Product does not have a seller wallet configured'
+      });
+    }
+
+    const price = Number(product.price);
+    if (!Number.isFinite(price) || price <= 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'Product price must be a positive number'
+      });
+    }
+
+    const [sellerWalletInfo, referrerWalletInfo] = await Promise.all([
+      getWalletAddressInfo(product.sellerWalletAddress, config),
+      getWalletAddressInfo(refererId, config)
+    ]);
+
+    if (!sellerWalletInfo.success) {
+      return res.status(502).json({
+        success: false,
+        error: `Unable to fetch seller wallet info: ${sellerWalletInfo.error || 'Unknown error'}`
+      });
+    }
+
+    if (!referrerWalletInfo.success) {
+      return res.status(502).json({
+        success: false,
+        error: `Unable to fetch referral wallet info: ${referrerWalletInfo.error || 'Unknown error'}`
+      });
+    }
+
+    const sellerWallet = sellerWalletInfo.data;
+    const refWallet = referrerWalletInfo.data;
+
+    if (!sellerWallet || !refWallet) {
+      return res.status(502).json({
+        success: false,
+        error: 'Wallet information could not be retrieved'
+      });
+    }
+
+    if (!sellerWallet.assetCode || sellerWallet.assetScale === undefined) {
+      return res.status(502).json({
+        success: false,
+        error: 'Seller wallet asset information is incomplete'
+      });
+    }
+
+    if (!refWallet.assetCode || refWallet.assetScale === undefined) {
+      return res.status(502).json({
+        success: false,
+        error: 'Referral wallet asset information is incomplete'
+      });
+    }
+
+    if (
+      sellerWallet.assetCode !== refWallet.assetCode ||
+      sellerWallet.assetScale !== refWallet.assetScale
+    ) {
+      return res.status(400).json({
+        success: false,
+        error: 'Seller and referral wallets must share the same assetCode and assetScale'
+      });
+    }
+
+    const assetScale = Number(sellerWallet.assetScale);
+    if (!Number.isInteger(assetScale) || assetScale < 0) {
+      return res.status(500).json({
+        success: false,
+        error: 'Invalid asset scale returned by wallet information'
+      });
+    }
+
+    const scaleFactor = Math.pow(10, assetScale);
+    const totalMinorAmount = Math.round(price * scaleFactor);
+    const sellerMinorAmount = Math.floor(totalMinorAmount * 0.95);
+    const referralMinorAmount = totalMinorAmount - sellerMinorAmount;
+
+    if (sellerMinorAmount <= 0 || referralMinorAmount <= 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'Calculated split amounts must be greater than zero'
+      });
+    }
+
+    const transactionId = `ref_${productId}_${Date.now()}_${crypto.randomBytes(5).toString('hex')}`;
+
+    const sellerGrantResult = await requestIncomingPaymentGrant(sellerWallet.authServer, config);
+    if (!sellerGrantResult.success) {
+      return res.status(502).json({
+        success: false,
+        error: `Failed to obtain seller incoming payment grant: ${sellerGrantResult.error || 'Unknown error'}`
+      });
+    }
+
+    if (!sellerGrantResult.isFinalized) {
+      return res.status(409).json({
+        success: false,
+        error: 'Seller incoming payment grant requires user interaction to finalize',
+        grant: sellerGrantResult.data
+      });
+    }
+
+    const sellerAccessToken = sellerGrantResult.data?.access_token?.value;
+    if (!sellerAccessToken) {
+      return res.status(502).json({
+        success: false,
+        error: 'Seller incoming payment grant did not return an access token'
+      });
+    }
+
+    const referrerGrantResult = await requestIncomingPaymentGrant(refWallet.authServer, config);
+    if (!referrerGrantResult.success) {
+      return res.status(502).json({
+        success: false,
+        error: `Failed to obtain referral incoming payment grant: ${referrerGrantResult.error || 'Unknown error'}`
+      });
+    }
+
+    if (!referrerGrantResult.isFinalized) {
+      return res.status(409).json({
+        success: false,
+        error: 'Referral incoming payment grant requires user interaction to finalize',
+        grant: referrerGrantResult.data
+      });
+    }
+
+    const referrerAccessToken = referrerGrantResult.data?.access_token?.value;
+    if (!referrerAccessToken) {
+      return res.status(502).json({
+        success: false,
+        error: 'Referral incoming payment grant did not return an access token'
+      });
+    }
+
+    const sellerIncomingPaymentResult = await createIncomingPayment(
+      sellerWallet.resourceServer,
+      sellerAccessToken,
+      {
+        walletAddress: sellerWallet.id,
+        incomingAmount: {
+          value: sellerMinorAmount.toString(),
+          assetCode: sellerWallet.assetCode,
+          assetScale
+        },
+        description: `Sale of ${product.title} (seller share)`
+      },
+      config
     );
-    
-    // Return the payment link
+
+    if (!sellerIncomingPaymentResult.success) {
+      return res.status(502).json({
+        success: false,
+        error: `Failed to create seller incoming payment: ${sellerIncomingPaymentResult.error || 'Unknown error'}`
+      });
+    }
+
+    const referrerIncomingPaymentResult = await createIncomingPayment(
+      refWallet.resourceServer,
+      referrerAccessToken,
+      {
+        walletAddress: refWallet.id,
+        incomingAmount: {
+          value: referralMinorAmount.toString(),
+          assetCode: refWallet.assetCode,
+          assetScale
+        },
+        description: `Referral reward for product ${product.title}`
+      },
+      config
+    );
+
+    if (!referrerIncomingPaymentResult.success) {
+      return res.status(502).json({
+        success: false,
+        error: `Failed to create referral incoming payment: ${referrerIncomingPaymentResult.error || 'Unknown error'}`
+      });
+    }
+
+    const sellerIncomingPayment = sellerIncomingPaymentResult.data;
+    const referrerIncomingPayment = referrerIncomingPaymentResult.data;
+
+    const [sellerPaymentLinks, referrerPaymentLinks] = await Promise.all([
+      generatePaymentLink(sellerMinorAmount.toString(), undefined, sellerIncomingPayment.id, config),
+      generatePaymentLink(referralMinorAmount.toString(), undefined, referrerIncomingPayment.id, config)
+    ]);
+
+    const referralTransaction = {
+      transactionId,
+      productId: String(productId),
+      product: {
+        id: product.id,
+        title: product.title,
+        price: product.price
+      },
+      seller: {
+        walletAddress: sellerWallet.id,
+        amount: sellerMinorAmount,
+        assetCode: sellerWallet.assetCode,
+        assetScale
+      },
+      referral: {
+        walletAddress: refWallet.id,
+        amount: referralMinorAmount,
+        assetCode: refWallet.assetCode,
+        assetScale
+      },
+      refererId,
+      split: {
+        total: totalMinorAmount,
+        sellerPercentage: 95,
+        referralPercentage: 5
+      },
+      createdAt: new Date().toISOString(),
+      paymentLinks: {
+        seller: sellerPaymentLinks,
+        referral: referrerPaymentLinks
+      },
+      accessTokens: {
+        seller: sellerAccessToken,
+        referral: referrerAccessToken
+      },
+      incomingPayments: {
+        seller: sellerIncomingPayment.id,
+        referral: referrerIncomingPayment.id
+      }
+    };
+
+    const transactionsPath = path.join(__dirname, 'referalTransactions.json');
+    let transactions = [];
+    try {
+      const existingTransactions = fs.readFileSync(transactionsPath, 'utf8');
+      if (existingTransactions.trim()) {
+        transactions = JSON.parse(existingTransactions);
+      }
+    } catch (error) {
+      if (error.code !== 'ENOENT') {
+        console.warn('Unable to read existing referalTransactions.json file:', error);
+      }
+    }
+
+    transactions.push(referralTransaction);
+    fs.writeFileSync(transactionsPath, JSON.stringify(transactions, null, 2));
+
     res.json({
-      success: true,
-      link: paymentLink
+      sellerPaymentLink: sellerPaymentLinks.webLink,
+      referralPaymentLink: referrerPaymentLinks.webLink
     });
-    
   } catch (error) {
-    console.error('Error generating payment link:', error);
+    console.error('Unexpected error generating referral payment links:', error);
     res.status(500).json({
       success: false,
       error: error.message
     });
   }
 });
-
 
 // ============================================================================
 // WALLET ADDRESS ENDPOINTS
