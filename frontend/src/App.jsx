@@ -6,6 +6,7 @@ import LoginForm from './components/LoginForm';
 import Companies from './components/Companies';
 import AddProduct from './components/AddProduct';
 import ProductDetail from './components/ProductDetail';
+import { deleteCookie } from './utils/cookies';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,6 +29,7 @@ function App() {
   };
 
   const handleLogout = () => {
+    deleteCookie('userWallet');
     setIsAuthenticated(false);
     setUser(null);
     setCurrentView('companies');

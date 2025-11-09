@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { animateLoginForm, animateError, setupButtonHover } from '../animations/loginAnimations';
+import { getCookie, setCookie } from '../utils/cookies';
 import transition from '../animations/transition';
 import '../css/Login.css';
 
@@ -17,6 +18,14 @@ const LoginForm = ({ onLogin }) => {
   const helpBoxRef = useRef(null);
   const errorRef = useRef(null);
   const leftDivRef = useRef(null);
+
+  // Cargar wallet desde cookie al montar
+  useEffect(() => {
+    const savedWallet = getCookie('userWallet');
+    if (savedWallet) {
+      setWallet(savedWallet);
+    }
+  }, []);
 
   useEffect(() => {
     // Ejecutar animaciones al montar con un pequeño delay
@@ -57,7 +66,10 @@ const LoginForm = ({ onLogin }) => {
     // Intentar login
     const success = onLogin(wallet, password);
     
-    if (!success) {
+    if (success) {
+      // Guardar wallet en cookie si el login es exitoso
+      setCookie('userWallet', wallet, 30); // Expira en 30 días
+    } else {
       setError('Credenciales incorrectas. Intenta de nuevo.');
     }
   };
