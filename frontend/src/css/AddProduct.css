@@ -1,0 +1,114 @@
+.addProductContainer {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .addProductHeader {
+    background-color: #333;
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .backButton {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: opacity 0.3s ease;
+  }
+  
+  .backButton:hover {
+    opacity: 0.7;
+  }
+  
+  .addProductTitle {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+  }
+  
+  .formWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px);
+    padding: 2rem;
+  }
+  
+  .formBox {
+    background-color: #666;
+    padding: 3rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .inputGroup {
+    width: 100%;
+  }
+  
+  .formInput {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    font-size: 1rem;
+    background-color: #555;
+    color: #fff;
+    outline: none;
+  }
+  
+  .formInput::placeholder {
+    color: #bbb;
+  }
+  
+  .formInput:focus {
+    background-color: #4a4a4a;
+  }
+  
+  .formTextarea {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 20px;
+    border: none;
+    font-size: 1rem;
+    background-color: #555;
+    color: #fff;
+    outline: none;
+    resize: vertical;
+    font-family: inherit;
+    min-height: 150px;
+  }
+  
+  .formTextarea::placeholder {
+    color: #bbb;
+  }
+  
+  .formTextarea:focus {
+    background-color: #4a4a4a;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: #1e5bb8;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: #164a9a;
+  }
