@@ -191,6 +191,15 @@ app.post('/api/products/add', (req, res) => {
   }
 });
 
+// get product by id from products.json
+app.get('/api/products/:id', (req, res) => {
+  const { id } = req.params;
+  const productsPath = path.join(__dirname, 'products.json');
+  const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+  const product = products.find(p => p.id == id);
+  res.json(product);
+});
+
 // ============================================================================
 // WALLET ADDRESS ENDPOINTS
 // ============================================================================
