@@ -106,6 +106,14 @@
     "description": "Grow fresh vegetables and herbs in space with this complete hydroponic system. Includes seeds for 20 varieties of plants and automated nutrient delivery.",
     "image": "https://picsum.photos/id/152/400/300",
     "price": 8500
+  },
+  {
+    "id": 13,
+    "sellerWalletAddress": "https://ilp.interledger-test.dev/eb37db34",
+    "sector": "Equipment",
+    "title": "Laser Blaster",
+    "description": "A powerful laser weapon",
+    "price": 50000,
+    "image": "https://picsum.photos/id/879/400/300"
   }
 ]
-

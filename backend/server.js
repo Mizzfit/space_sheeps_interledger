@@ -202,6 +202,72 @@ app.get('/api/products/:id', (req, res) => {
 });
 
 
+//webhook that receives product id and refereral id to referalJson
+app.get('/api/referal/webhook', (req, res) => {
+  try {
+    const { productId, refereralId } = req.query;
+    
+    // Validate required parameters
+    if (!productId || !refereralId) {
+      return res.status(400).json({
+        success: false,
+        error: 'productId and refereralId are required'
+      });
+    }
+    
+    const referalSalesPath = path.join(__dirname, 'referalSales.json');
+    
+    // Read existing referral sales data
+    let referalSales = [];
+    try {
+      const fileContent = fs.readFileSync(referalSalesPath, 'utf8');
+      if (fileContent.trim()) {
+        referalSales = JSON.parse(fileContent);
+      }
+    } catch (error) {
+      // File doesn't exist or is invalid JSON, start with empty array
+      referalSales = [];
+    }
+    
+    // Check if combination already exists
+    const existingEntry = referalSales.find(
+      entry => entry.productId === productId && entry.refereralId === refereralId
+    );
+    
+    let currentCount;
+    if (existingEntry) {
+      // Increment count if entry exists
+      existingEntry.count += 1;
+      currentCount = existingEntry.count;
+    } else {
+      // Register new combination with count 1
+      const newEntry = {
+        productId,
+        refereralId,
+        count: 1
+      };
+      referalSales.push(newEntry);
+      currentCount = 1;
+    }
+    
+    // Write back to file
+    fs.writeFileSync(referalSalesPath, JSON.stringify(referalSales, null, 2));
+    
+    res.json({
+      success: true,
+      productId,
+      refereralId,
+      count: currentCount
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+
 
 // ============================================================================
 // WALLET ADDRESS ENDPOINTS
