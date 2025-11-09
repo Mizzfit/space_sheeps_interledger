@@ -8,8 +8,7 @@ export const animateProductDetail = (refs) => {
     comisionRef, 
     priceRef, 
     descriptionRef, 
-    buttonRef,
-    qrButtonRef
+    buttonRef
   } = refs;
 
   // Verificar que las referencias existan
@@ -71,15 +70,6 @@ export const animateProductDetail = (refs) => {
     { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' },
     '-=0.2'
   );
-
-  // Animar botón QR con bounce (mismo estilo que el botón de link)
-  if (qrButtonRef && qrButtonRef.current) {
-    tl.fromTo(qrButtonRef.current,
-      { scale: 0.8, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' },
-      '-=0.4'
-    );
-  }
 
   return tl;
 };

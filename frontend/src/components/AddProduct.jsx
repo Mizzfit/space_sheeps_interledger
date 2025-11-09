@@ -122,7 +122,7 @@ const AddProduct = ({ onBack }) => {
             onClick={handleSubmit} 
             className="submitButton"
           >
-            Registrarse
+            Agregar producto
           </button>
         </div>
       </div>

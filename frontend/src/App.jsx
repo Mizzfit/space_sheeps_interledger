@@ -6,6 +6,7 @@ import LoginForm from './components/LoginForm';
 import Companies from './components/Companies';
 import AddProduct from './components/AddProduct';
 import ProductDetail from './components/ProductDetail';
+import Sell from './components/Sell';
 import { deleteCookie } from './utils/cookies';
 
 function App() {
@@ -49,6 +50,11 @@ function App() {
     setCurrentView('productDetail');
   };
 
+  const goToSell = (company) => {
+    setSelectedCompany(company);
+    setCurrentView('sell');
+  };
+
   return (
     <AnimatePresence mode="wait">
       {!isAuthenticated ? (
@@ -71,7 +77,15 @@ function App() {
             <ProductDetail 
               key="productDetail"
               company={selectedCompany} 
-              onBack={goToCompanies} 
+              onBack={goToCompanies}
+              onNavigateToSell={goToSell}
+            />
+          )}
+          {currentView === 'sell' && selectedCompany && (
+            <Sell 
+              key="sell"
+              company={selectedCompany} 
+              onBack={goToProductDetail}
             />
           )}
         </>

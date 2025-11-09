@@ -1,0 +1,158 @@
+body {
+  display: block;
+  box-sizing: border-box;
+  font-family: 'MiFuente', sans-serif;
+  background-color: white;
+}
+
+.sellContainer {
+  display: flex;
+  gap: 5em;
+  height: 100% !important;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sellContent {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  padding: 2rem;
+}
+
+.sellLayout {
+  background-color: #fff;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1400px;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sellInfoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.sellTitle {
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
+  color: #333;
+}
+
+.priceInputSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.priceLabel {
+  font-size: 1.2rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.priceInput {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 1.1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.priceInput:focus {
+  border-color: #4CAF50;
+}
+
+.priceInput::placeholder {
+  color: #bbb;
+}
+
+.productDescription {
+  border-radius: 20px;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+}
+
+.descriptionText {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  text-align: start;
+  line-height: 1.6;
+}
+
+.qrSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  padding: 2rem;
+}
+
+.qrWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.qrLabel {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  text-align: center;
+}
+
+.qrDataContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 350px;
+}
+
+.qrDataLabel {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  font-weight: 500;
+}
+
+.qrData {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+  text-align: center;
+  word-break: break-all;
+  padding: 0.75rem;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .sellLayout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .qrSection {
+    order: -1;
+  }
+}
+
