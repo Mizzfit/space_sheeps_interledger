@@ -51,14 +51,13 @@
   
   .productImageSection {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
   }
   
   .productImage {
     width: 100%;
     max-width: 600px;
-    height: 100%;
     border-radius: 8px;
     background-color: #ddd;
   }
@@ -67,6 +66,32 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    max-height: 100%;
+    overflow-y: visible;
+  }
+
+  .productInfoSection.withScroll {
+    overflow-y: auto;
+    max-height: 100vh;
+    padding-right: 0.5rem;
+  }
+
+  .productInfoSection.withScroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .productInfoSection.withScroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .productInfoSection.withScroll::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  .productInfoSection.withScroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
   
   .companyName {
@@ -159,6 +184,14 @@
     text-align: start;
   }
   
+  .buttonsContainer {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
   .linkButton {
     background-color: #ffd700;
     color: #000;
@@ -168,12 +201,84 @@
     font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 1rem;
-    align-self: center;
+    flex: 1;
+    min-width: 200px;
   }
   
   .linkButton:hover {
     background-color: #ffed4e;
+  }
+
+  .linkButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .qrButton {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .qrButton:hover {
+    background-color: #45a049;
+  }
+
+  .qrContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .qrWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .qrLabel {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    text-align: center;
+  }
+
+  .qrData {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+    text-align: center;
+    word-break: break-all;
+    max-width: 300px;
+    padding: 0.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
   }
   
   /* Responsive */

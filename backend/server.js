@@ -204,10 +204,10 @@ app.get('/api/products/:id', (req, res) => {
   res.json(product);
 });
 
-
 //webhook that receives product id and refereral id to referalJson
 app.get('/api/referal/webhook', (req, res) => {
   try {
+    //    productId   wallet coockie
     const { productId, refereralId } = req.query;
     
     // Validate required parameters
