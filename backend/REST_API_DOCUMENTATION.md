@@ -166,7 +166,7 @@ curl http://localhost:3000/api/info
 curl -X POST http://localhost:3000/api/wallet/info \
   -H "Content-Type: application/json" \
   -d '{
-    "walletAddressUrl": "https://ilp.interledger-test.dev/alice"
+    "walletAddressUrl": "$ilp.interledger-test.dev/eb37db34"
   }'
 ```
 

@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';  // ← Agregar import
-
+import fs from 'fs';
 
 import { initiatePayment } from './api/payment.js';
 
@@ -132,9 +132,28 @@ app.get('/api/info', (req, res) => {
       ],
       legacy: [
         'POST /api/payment'
+      ],
+      user: [
+        'POST /api/user/login'
       ]
     }
   });
+});
+
+// dummy endpoint for login that only returns the same as reciveves
+app.post('/api/user/login', (req, res) => {
+  res.json({
+    success: true,
+    data: req.body
+  });
+});
+
+// get products from products.json, if recieves a query search by title or description
+app.post('/api/products', (req, res) => {
+  const { query } = req.body;
+  const products = JSON.parse(fs.readFileSync('products.json', 'utf8'));
+  const filteredProducts = products.filter(product => product.title.includes(query) || product.description.includes(query));
+  res.json(filteredProducts);
 });
 
 // ============================================================================

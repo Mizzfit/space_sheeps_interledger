@@ -1,0 +1,99 @@
+[
+  {
+    "id": 1,
+    "sector": "Spacecraft",
+    "title": "Intergalactic Cruiser X-500",
+    "description": "A high-performance spacecraft designed for long-distance travel across galaxies. Features advanced propulsion systems and comfortable living quarters for extended missions.",
+    "image": "https://picsum.photos/id/1041/400/300",
+    "price": 15000000
+  },
+  {
+    "id": 2,
+    "sector": "Equipment",
+    "title": "Quantum Navigation System",
+    "description": "State-of-the-art navigation technology that uses quantum entanglement to plot the most efficient routes through space-time. Essential for any serious space explorer.",
+    "image": "https://picsum.photos/id/180/400/300",
+    "price": 250000
+  },
+  {
+    "id": 3,
+    "sector": "Supplies",
+    "title": "Zero-G Coffee Maker Deluxe",
+    "description": "Brew the perfect cup of coffee in zero gravity. Temperature-controlled brewing chamber ensures consistent quality whether you're orbiting Earth or exploring distant nebulae.",
+    "image": "https://picsum.photos/id/431/400/300",
+    "price": 1500
+  },
+  {
+    "id": 4,
+    "sector": "Spacecraft",
+    "title": "Space Sheep Transport Pod",
+    "description": "Specially designed for the safe and comfortable transport of space sheep. Climate-controlled interior with automated feeding systems and entertainment for your woolly friends.",
+    "image": "https://picsum.photos/id/659/400/300",
+    "price": 3500000
+  },
+  {
+    "id": 5,
+    "sector": "Equipment",
+    "title": "Solar Shield Generator",
+    "description": "Protect your spacecraft from harmful solar radiation and micro-meteorites with this advanced shielding technology. Automatically adjusts strength based on detected threats.",
+    "image": "https://picsum.photos/id/110/400/300",
+    "price": 750000
+  },
+  {
+    "id": 6,
+    "sector": "Supplies",
+    "title": "Freeze-Dried Space Food Collection",
+    "description": "A 6-month supply of nutritionally balanced, delicious freeze-dried meals. Includes favorites like 'Nebula Noodles' and 'Asteroid Stew'. Just add water and enjoy!",
+    "image": "https://picsum.photos/id/292/400/300",
+    "price": 5000
+  },
+  {
+    "id": 7,
+    "sector": "Equipment",
+    "title": "Advanced EVA Suit",
+    "description": "Top-of-the-line extravehicular activity suit with 48-hour life support, enhanced mobility joints, and built-in communication systems. Perfect for spacewalks and planetary exploration.",
+    "image": "https://picsum.photos/id/1003/400/300",
+    "price": 180000
+  },
+  {
+    "id": 8,
+    "sector": "Spacecraft",
+    "title": "Mini Research Station",
+    "description": "Compact orbital laboratory perfect for scientific research and observations. Includes docking capabilities, solar power arrays, and modular experiment bays.",
+    "image": "https://picsum.photos/id/1055/400/300",
+    "price": 8000000
+  },
+  {
+    "id": 9,
+    "sector": "Supplies",
+    "title": "Oxygen Regeneration Cartridges",
+    "description": "Pack of 12 high-capacity oxygen regeneration cartridges. Each cartridge provides breathable air for up to 30 days for a single person. Essential for extended missions.",
+    "image": "https://picsum.photos/id/96/400/300",
+    "price": 12000
+  },
+  {
+    "id": 10,
+    "sector": "Equipment",
+    "title": "Holographic Communication Terminal",
+    "description": "Stay in touch with loved ones across the galaxy with crystal-clear holographic projection. Supports real-time communication via quantum relay networks.",
+    "image": "https://picsum.photos/id/326/400/300",
+    "price": 45000
+  },
+  {
+    "id": 11,
+    "sector": "Spacecraft",
+    "title": "Emergency Escape Pod",
+    "description": "Compact single-person escape pod with automatic distress beacon, 7-day life support, and AI-assisted landing capabilities. Safety first in the vast cosmos.",
+    "image": "https://picsum.photos/id/158/400/300",
+    "price": 500000
+  },
+  {
+    "id": 12,
+    "sector": "Supplies",
+    "title": "Hydroponic Garden Kit",
+    "description": "Grow fresh vegetables and herbs in space with this complete hydroponic system. Includes seeds for 20 varieties of plants and automated nutrient delivery.",
+    "image": "https://picsum.photos/id/152/400/300",
+    "price": 8500
+  }
+]
+
