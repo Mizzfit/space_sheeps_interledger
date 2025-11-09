@@ -13,6 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: 'MiFuente';
+  src: url('../assets/fonts/rooberttrial-light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -28,6 +35,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: white;
 }
 
 h1 {
@@ -52,6 +60,28 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.slide-in {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: black;
+  transform-origin: bottom;
+  z-index: 9999;
+}
+
+.slide-out {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: black;
+  transform-origin: top;
+  z-index: 9999;
 }
 
 @media (prefers-color-scheme: light) {

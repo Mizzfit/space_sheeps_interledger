@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import LoginForm from './components/LoginForm';
 import Companies from './components/Companies';
 import AddProduct from './components/AddProduct';
+import ProductDetail from './components/ProductDetail';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
-  const [currentView, setCurrentView] = useState('companies'); // 'companies' o 'addProduct'
+  const [currentView, setCurrentView] = useState('companies');
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
-  // Credenciales hardcodeadas (simulando API)
   const validCredentials = {
     wallet: 'testWallet123',
     password: 'password123'
@@ -37,27 +39,42 @@ function App() {
 
   const goToCompanies = () => {
     setCurrentView('companies');
+    setSelectedCompany(null);
+  };
+
+  const goToProductDetail = (company) => {
+    setSelectedCompany(company);
+    setCurrentView('productDetail');
   };
 
   return (
-    <div>
+    <AnimatePresence mode="wait">
       {!isAuthenticated ? (
-        <LoginForm onLogin={handleLogin} />
+        <LoginForm key="login" onLogin={handleLogin} />
       ) : (
         <>
           {currentView === 'companies' && (
             <Companies 
+              key="companies"
               user={user} 
               onLogout={handleLogout}
               onAddProduct={goToAddProduct}
+              onSelectCompany={goToProductDetail}
             />
           )}
           {currentView === 'addProduct' && (
-            <AddProduct onBack={goToCompanies} />
+            <AddProduct key="addProduct" onBack={goToCompanies} />
+          )}
+          {currentView === 'productDetail' && selectedCompany && (
+            <ProductDetail 
+              key="productDetail"
+              company={selectedCompany} 
+              onBack={goToCompanies} 
+            />
           )}
         </>
       )}
-    </div>
+    </AnimatePresence>
   );
 }
 
