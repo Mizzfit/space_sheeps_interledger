@@ -1238,5 +1238,53 @@
       "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/74749281-c522-4c22-847c-697fbced4098",
       "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/a45397f9-e896-4a65-868d-424b62be4129"
     }
+  },
+  {
+    "transactionId": "ref_1_1762693575415_3b90baed73",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T13:06:18.799Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F9b17bd2c-846f-46bc-9991-14f7de1c8e1a&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F9b17bd2c-846f-46bc-9991-14f7de1c8e1a&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/9b17bd2c-846f-46bc-9991-14f7de1c8e1a"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Fb9fc1c20-0020-4368-a2f3-05fdafa97523&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Fb9fc1c20-0020-4368-a2f3-05fdafa97523&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/b9fc1c20-0020-4368-a2f3-05fdafa97523"
+      }
+    },
+    "accessTokens": {
+      "seller": "099FD41C57FF6EA53939",
+      "referral": "2AFEB6E69F549EA0A100"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/9b17bd2c-846f-46bc-9991-14f7de1c8e1a",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/b9fc1c20-0020-4368-a2f3-05fdafa97523"
+    }
   }
 ]
