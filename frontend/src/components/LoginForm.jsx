@@ -5,7 +5,7 @@ import transition from '../animations/transition';
 import '../css/Login.css';
 
 const LoginForm = ({ onLogin }) => {
-  const [wallet, setWallet] = useState('');
+  const [wallet, setWallet] = useState('https://ilp.interledger-test.dev/seller_example');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
