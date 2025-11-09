@@ -135,40 +135,40 @@
   .priceSection {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    justify-content: center;
     margin: 1rem 0;
+    width: 100%;
   }
-  
-  .recommendedPrice {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .priceLabel {
-    font-size: 1.2rem;
-    color: #666;
-  }
-  
-  .priceValue {
-    font-size: 1.5rem;
-    font-weight: 600;
+
+  .priceSection .input-group {
+    width: auto;
+    max-width: 200px;
   }
   
   .realPriceInput {
-    flex: 1;
     padding: 1rem 1.5rem;
-    border-radius: 8px;
-    border: none;
+    border-radius: 8px 0 0 8px;
+    border: black solid 0.3px;
+    border-right: none;
     background-color: #ffffff;
     color: #000000;
     font-size: 1.1rem;
     outline: none;
-    border: black solid 0.3px;
   }
   
   .realPriceInput::placeholder {
     color: #bbb;
+  }
+
+  .priceSection .input-group-text {
+    padding: 1rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    border: black solid 0.3px;
+    border-left: none;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 1.1rem;
+    font-weight: 500;
   }
   
   .descriptionBox {

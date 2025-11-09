@@ -63,14 +63,20 @@ const LoginForm = ({ onLogin }) => {
     e.preventDefault();
     setError('');
 
-    // Intentar login
+    // Validar que el wallet no esté vacío
+    if (!wallet.trim()) {
+      setError('Por favor ingresa tu wallet.');
+      return;
+    }
+
+    // Cualquier contraseña es válida, solo llamar onLogin con el wallet
     const success = onLogin(wallet, password);
     
     if (success) {
       // Guardar wallet en cookie si el login es exitoso
       setCookie('userWallet', wallet, 30); // Expira en 30 días
     } else {
-      setError('Credenciales incorrectas. Intenta de nuevo.');
+      setError('Error al iniciar sesión. Intenta de nuevo.');
     }
   };
 
@@ -101,7 +107,7 @@ const LoginForm = ({ onLogin }) => {
               <input
                 type="text"
                 className="form-control input"
-                placeholder="Wallet"
+                placeholder="https://ilp.interledger-test.dev/seller_example"
                 value={wallet}
                 onChange={(e) => setWallet(e.target.value)}
                 required

@@ -758,5 +758,485 @@
       "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/68887bab-67a4-4fa5-ada9-c3d35a20b714",
       "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/204f961c-78dc-4474-9db0-1b447e60e7ea"
     }
+  },
+  {
+    "transactionId": "ref_1_1762691109698_ad6bbb6d01",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T12:25:11.626Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Ffdd9b3ed-99fa-4f3b-a817-e085a0910dd4&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Ffdd9b3ed-99fa-4f3b-a817-e085a0910dd4&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/fdd9b3ed-99fa-4f3b-a817-e085a0910dd4"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F4ebd17cf-7dc7-4b0c-b7f7-fd8ff59d2b90&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F4ebd17cf-7dc7-4b0c-b7f7-fd8ff59d2b90&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/4ebd17cf-7dc7-4b0c-b7f7-fd8ff59d2b90"
+      }
+    },
+    "accessTokens": {
+      "seller": "1AF40A4165978424DD65",
+      "referral": "7BFF65DBC37D26EB65FA"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/fdd9b3ed-99fa-4f3b-a817-e085a0910dd4",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/4ebd17cf-7dc7-4b0c-b7f7-fd8ff59d2b90"
+    }
+  },
+  {
+    "transactionId": "ref_1_1762691358602_1e0897c107",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T12:29:20.558Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F79947942-8a69-43dd-9a1b-409988fbedd4&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F79947942-8a69-43dd-9a1b-409988fbedd4&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/79947942-8a69-43dd-9a1b-409988fbedd4"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F57c7186f-023e-4771-a7f4-3bbed0808cd5&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F57c7186f-023e-4771-a7f4-3bbed0808cd5&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/57c7186f-023e-4771-a7f4-3bbed0808cd5"
+      }
+    },
+    "accessTokens": {
+      "seller": "01EC41DC534E94468C0F",
+      "referral": "0F0570F9FC301CA7F674"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/79947942-8a69-43dd-9a1b-409988fbedd4",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/57c7186f-023e-4771-a7f4-3bbed0808cd5"
+    }
+  },
+  {
+    "transactionId": "ref_1_1762691360747_51aef1b804",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T12:29:21.788Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F00d19e79-2aad-4ea6-84bb-0c3ec0698ee1&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F00d19e79-2aad-4ea6-84bb-0c3ec0698ee1&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/00d19e79-2aad-4ea6-84bb-0c3ec0698ee1"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F277542b5-752e-4624-bdff-a4beda5614f2&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F277542b5-752e-4624-bdff-a4beda5614f2&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/277542b5-752e-4624-bdff-a4beda5614f2"
+      }
+    },
+    "accessTokens": {
+      "seller": "16D767ADEAFDDBED0467",
+      "referral": "3FD7AF8B71B62CD779D2"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/00d19e79-2aad-4ea6-84bb-0c3ec0698ee1",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/277542b5-752e-4624-bdff-a4beda5614f2"
+    }
+  },
+  {
+    "transactionId": "ref_1_1762691389138_0962f65bd5",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T12:29:51.184Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F97fb78f2-6715-47dd-a080-c2d53fcced9b&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F97fb78f2-6715-47dd-a080-c2d53fcced9b&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/97fb78f2-6715-47dd-a080-c2d53fcced9b"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Fb3b0ef29-d402-4013-96b3-f2ff94216656&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Fb3b0ef29-d402-4013-96b3-f2ff94216656&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/b3b0ef29-d402-4013-96b3-f2ff94216656"
+      }
+    },
+    "accessTokens": {
+      "seller": "358A3F5BBA6B72211041",
+      "referral": "39222A2C4B2DE0B2C029"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/97fb78f2-6715-47dd-a080-c2d53fcced9b",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/b3b0ef29-d402-4013-96b3-f2ff94216656"
+    }
+  },
+  {
+    "transactionId": "ref_1_1762691391377_bca5f771bc",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T12:29:52.507Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F4f0255fb-c893-43cc-8a78-b880cea274c2&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F4f0255fb-c893-43cc-8a78-b880cea274c2&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/4f0255fb-c893-43cc-8a78-b880cea274c2"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Fc5206a47-371f-4624-826b-23ac4ae6d8c0&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Fc5206a47-371f-4624-826b-23ac4ae6d8c0&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/c5206a47-371f-4624-826b-23ac4ae6d8c0"
+      }
+    },
+    "accessTokens": {
+      "seller": "55021DD17BDF1FC75426",
+      "referral": "14107BD892A6A592D14C"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/4f0255fb-c893-43cc-8a78-b880cea274c2",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/c5206a47-371f-4624-826b-23ac4ae6d8c0"
+    }
+  },
+  {
+    "transactionId": "ref_1_1762691446579_67015ee0fe",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T12:30:48.420Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Fedd106f7-ac45-4b28-a098-43b4e57388ce&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Fedd106f7-ac45-4b28-a098-43b4e57388ce&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/edd106f7-ac45-4b28-a098-43b4e57388ce"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F9c2d3ffa-f340-4f47-afe7-11fb7ebef69f&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F9c2d3ffa-f340-4f47-afe7-11fb7ebef69f&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/9c2d3ffa-f340-4f47-afe7-11fb7ebef69f"
+      }
+    },
+    "accessTokens": {
+      "seller": "E5ED0D3AF943A6235D0F",
+      "referral": "71AF278B1E86D6A209E5"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/edd106f7-ac45-4b28-a098-43b4e57388ce",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/9c2d3ffa-f340-4f47-afe7-11fb7ebef69f"
+    }
+  },
+  {
+    "transactionId": "ref_1_1762691448631_f1d164b1d4",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T12:30:49.763Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F7fb74b0b-0dc7-416e-89ad-fe0511518ebb&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F7fb74b0b-0dc7-416e-89ad-fe0511518ebb&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/7fb74b0b-0dc7-416e-89ad-fe0511518ebb"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F8e465db7-c88c-4f3c-b382-f0039e1b4959&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F8e465db7-c88c-4f3c-b382-f0039e1b4959&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/8e465db7-c88c-4f3c-b382-f0039e1b4959"
+      }
+    },
+    "accessTokens": {
+      "seller": "391CBDC9F4F216725632",
+      "referral": "B4DAD54E57442A2CA185"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/7fb74b0b-0dc7-416e-89ad-fe0511518ebb",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/8e465db7-c88c-4f3c-b382-f0039e1b4959"
+    }
+  },
+  {
+    "transactionId": "ref_1_1762691544116_78ec52b499",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T12:32:26.007Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F2bece9c4-fdd2-4107-a4ee-f2231fa331b2&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F2bece9c4-fdd2-4107-a4ee-f2231fa331b2&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/2bece9c4-fdd2-4107-a4ee-f2231fa331b2"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F77c1c48a-eaaf-47fa-80b0-aea7bb6b4e7e&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F77c1c48a-eaaf-47fa-80b0-aea7bb6b4e7e&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/77c1c48a-eaaf-47fa-80b0-aea7bb6b4e7e"
+      }
+    },
+    "accessTokens": {
+      "seller": "FA460458BE1D60C0B795",
+      "referral": "4017C04D269C815FCD38"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/2bece9c4-fdd2-4107-a4ee-f2231fa331b2",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/77c1c48a-eaaf-47fa-80b0-aea7bb6b4e7e"
+    }
+  },
+  {
+    "transactionId": "ref_1_1762691591790_43015c5659",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T12:33:13.674Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Faf7f902f-a5c9-4aa0-ae9b-67007a71ef5f&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Faf7f902f-a5c9-4aa0-ae9b-67007a71ef5f&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/af7f902f-a5c9-4aa0-ae9b-67007a71ef5f"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Ff5e60f40-5b4c-4c5a-8dcb-7dad1d721da4&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Ff5e60f40-5b4c-4c5a-8dcb-7dad1d721da4&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/f5e60f40-5b4c-4c5a-8dcb-7dad1d721da4"
+      }
+    },
+    "accessTokens": {
+      "seller": "6C713285577552C5DECC",
+      "referral": "974AF570B6F90B78148F"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/af7f902f-a5c9-4aa0-ae9b-67007a71ef5f",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/f5e60f40-5b4c-4c5a-8dcb-7dad1d721da4"
+    }
+  },
+  {
+    "transactionId": "ref_1_1762692221224_2a2df4c6ed",
+    "productId": "1",
+    "product": {
+      "id": 1,
+      "title": "Intergalactic Cruiser X-500",
+      "price": 500
+    },
+    "seller": {
+      "walletAddress": "https://ilp.interledger-test.dev/seller_example",
+      "amount": 47500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "referral": {
+      "walletAddress": "https://ilp.interledger-test.dev/refeerer1",
+      "amount": 2500,
+      "assetCode": "MXN",
+      "assetScale": 2
+    },
+    "refererId": "https://ilp.interledger-test.dev/refeerer1",
+    "split": {
+      "total": 50000,
+      "sellerPercentage": 95,
+      "referralPercentage": 5
+    },
+    "createdAt": "2025-11-09T12:43:43.198Z",
+    "paymentLinks": {
+      "seller": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F74749281-c522-4c22-847c-697fbced4098&amount=47500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2F74749281-c522-4c22-847c-697fbced4098&amount=47500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/74749281-c522-4c22-847c-697fbced4098"
+      },
+      "referral": {
+        "deepLink": "openpayments://pay?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Fa45397f9-e896-4a65-868d-424b62be4129&amount=2500",
+        "webLink": "https://pay.interledger-test.dev/payment-choice?receiver=https%3A%2F%2Filp.interledger-test.dev%2Ff537937b-7016-481b-b655-9f0d1014822c%2Fincoming-payments%2Fa45397f9-e896-4a65-868d-424b62be4129&amount=2500",
+        "receiver": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/a45397f9-e896-4a65-868d-424b62be4129"
+      }
+    },
+    "accessTokens": {
+      "seller": "9E3978328A004668F587",
+      "referral": "1F53784E9F5181F55DBC"
+    },
+    "incomingPayments": {
+      "seller": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/74749281-c522-4c22-847c-697fbced4098",
+      "referral": "https://ilp.interledger-test.dev/f537937b-7016-481b-b655-9f0d1014822c/incoming-payments/a45397f9-e896-4a65-868d-424b62be4129"
+    }
   }
 ]

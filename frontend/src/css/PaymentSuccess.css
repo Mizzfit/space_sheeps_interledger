@@ -1,0 +1,269 @@
+body {
+  display: block;
+  box-sizing: border-box;
+  font-family: 'MiFuente', sans-serif;
+  background-color: white;
+}
+
+.paymentSuccessContainer {
+  display: flex;
+  gap: 5em;
+  height: 100% !important;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.paymentSuccessContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: calc(100vh - 200px);
+}
+
+.successCard {
+  background-color: #fff;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+.loadingSection {
+  padding: 3rem;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4CAF50;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingText {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.errorSection {
+  padding: 2rem;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.errorTitle {
+  font-size: 2rem;
+  color: #ff4444;
+  margin-bottom: 1rem;
+}
+
+.errorMessage {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.successIcon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.successTitle {
+  font-size: 2.5rem;
+  color: #4CAF50;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.paymentDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: left;
+}
+
+.detailSection {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.sectionTitle {
+  font-size: 1.3rem;
+  color: #333;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.detailRow:last-child {
+  border-bottom: none;
+}
+
+.detailLabel {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.detailValue {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.detailValue.highlight {
+  color: #4CAF50;
+  font-size: 1.3rem;
+}
+
+.distributionSection {
+  background-color: #fff;
+  border: 2px solid #4CAF50;
+}
+
+.distributionCard {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #e0e0e0;
+}
+
+.distributionCard:last-child {
+  margin-bottom: 0;
+}
+
+.distributionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.distributionIcon {
+  font-size: 1.5rem;
+}
+
+.distributionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.distributionAmount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.percentage {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4CAF50;
+}
+
+.amount {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.distributionWallet {
+  text-align: right;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.linkContainer {
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.linkLabel {
+  display: block;
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.paymentLink {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 400px;
+}
+
+.paymentLink:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.paymentLink.referralLink {
+  background-color: #2196F3;
+}
+
+.paymentLink.referralLink:hover {
+  background-color: #1976D2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .successCard {
+    padding: 2rem 1rem;
+  }
+
+  .successTitle {
+    font-size: 2rem;
+  }
+
+  .distributionAmount {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+

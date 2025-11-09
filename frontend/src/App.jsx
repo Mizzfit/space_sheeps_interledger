@@ -7,6 +7,7 @@ import Companies from './components/Companies';
 import AddProduct from './components/AddProduct';
 import ProductDetail from './components/ProductDetail';
 import Sell from './components/Sell';
+import PaymentSuccess from './components/PaymentSuccess';
 import { deleteCookie } from './utils/cookies';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
   };
 
   const handleLogin = (wallet, password) => {
-    if (wallet === validCredentials.wallet && password === validCredentials.password) {
+    if (wallet && wallet.trim()) {
       setIsAuthenticated(true);
       setUser({ wallet });
       return true;
@@ -55,6 +56,11 @@ function App() {
     setCurrentView('sell');
   };
 
+  const goToPaymentSuccess = (company) => {
+    setSelectedCompany(company);
+    setCurrentView('paymentSuccess');
+  };
+
   return (
     <AnimatePresence mode="wait">
       {!isAuthenticated ? (
@@ -86,6 +92,14 @@ function App() {
               key="sell"
               company={selectedCompany} 
               onBack={goToProductDetail}
+              onNavigateToPayment={goToPaymentSuccess}
+            />
+          )}
+          {currentView === 'paymentSuccess' && selectedCompany && (
+            <PaymentSuccess 
+              key="paymentSuccess"
+              company={selectedCompany} 
+              onBack={goToSell}
             />
           )}
         </>

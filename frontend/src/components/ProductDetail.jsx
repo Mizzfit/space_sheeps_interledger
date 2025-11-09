@@ -101,17 +101,17 @@ const ProductDetail = ({ company, onBack, onNavigateToSell }) => {
             <p className="comisionText" ref={comisionRef}>Comision o porcentaje</p>
 
             <div className="priceSection" ref={priceRef}>
-              <div className="recommendedPrice">
-                <span className="priceLabel">Recomendada:</span>
-                <span className="priceValue">3%</span>
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control realPriceInput"
+                  placeholder="3"
+                  value={realPrice}
+                  onChange={(e) => setRealPrice(e.target.value)}
+                  aria-label="Porcentaje de comisión"
+                />
+                <span className="input-group-text">%</span>
               </div>
-              <input
-                type="text"
-                placeholder="Real"
-                value={realPrice}
-                onChange={(e) => setRealPrice(e.target.value)}
-                className="realPriceInput"
-              />
             </div>
 
             <div className="descriptionBox" ref={descriptionRef}>
