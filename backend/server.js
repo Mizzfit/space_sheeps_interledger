@@ -179,6 +179,7 @@ app.post('/api/products/add', (req, res) => {
     // Create the new product with image and ID
     const newProduct = {
       id: newId,
+      sellerWalletAddress: defaultConfig.walletAddressUrl,
       ...product,
       image: imageUrl
     };
@@ -199,6 +200,8 @@ app.get('/api/products/:id', (req, res) => {
   const product = products.find(p => p.id == id);
   res.json(product);
 });
+
+
 
 // ============================================================================
 // WALLET ADDRESS ENDPOINTS
@@ -230,6 +233,8 @@ app.post('/api/wallet/info', async (req, res) => {
     });
   }
 });
+
+
 
 /**
  * GET /api/wallet/keys
