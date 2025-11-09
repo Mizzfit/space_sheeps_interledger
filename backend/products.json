@@ -6,7 +6,7 @@
     "sellerWalletAddress": "https://ilp.interledger-test.dev/eb37db34",
     "description": "A high-performance spacecraft designed for long-distance travel across galaxies. Features advanced propulsion systems and comfortable living quarters for extended missions.",
     "image": "https://picsum.photos/id/1041/400/300",
-    "price": 15000000
+    "price": 500
   },
   {
     "id": 2,

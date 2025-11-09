@@ -57,6 +57,9 @@ import {
 // Import utilities
 import { validateConfig, formatAmount } from './api/utils.js';
 
+// Import Payment Link operations
+import { generatePaymentLink } from './api/paymentLink.js';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -267,6 +270,53 @@ app.get('/api/referal/webhook', (req, res) => {
   }
 });
 
+//Endpoint that generates a link to buy on openpayment that recieves mywallet and product id (takes seller wallet from products.json)
+app.get('/api/referal/link', async (req, res) => {
+  try {
+    const { mywallet, productId } = req.query;
+    
+    // Validate required parameters
+    if (!mywallet || !productId) {
+      return res.status(400).json({
+        success: false,
+        error: 'mywallet and productId are required'
+      });
+    }
+    
+    // Get product from products.json
+    const productsPath = path.join(__dirname, 'products.json');
+    const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+    const product = products.find(p => p.id == productId);
+    
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        error: 'Product not found'
+      });
+    }
+    
+    // Generate payment link using the module
+    const paymentLink = await generatePaymentLink(
+      product.price,
+      mywallet,
+      product.sellerWalletAddress,
+      defaultConfig
+    );
+    
+    // Return the payment link
+    res.json({
+      success: true,
+      link: paymentLink
+    });
+    
+  } catch (error) {
+    console.error('Error generating payment link:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
 
 
 // ============================================================================
