@@ -1,6 +1,11 @@
 import express from 'express';
 import cors from 'cors';  // ← Agregar import
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 import { initiatePayment } from './api/payment.js';
 
@@ -151,9 +156,39 @@ app.post('/api/user/login', (req, res) => {
 // get products from products.json, if recieves a query search by title or description
 app.post('/api/products', (req, res) => {
   const { query } = req.body;
-  const products = JSON.parse(fs.readFileSync('products.json', 'utf8'));
+  const productsPath = path.join(__dirname, 'products.json');
+  const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
   const filteredProducts = products.filter(product => product.title.includes(query) || product.description.includes(query));
   res.json(filteredProducts);
+});
+
+//add a product to products.json
+app.post('/api/products/add', (req, res) => {
+  try {
+    const { product } = req.body;
+    const productsPath = path.join(__dirname, 'products.json');
+    const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+    
+    // Generate a random image ID from picsum (between 1 and 1084)
+    const randomImageId = Math.floor(Math.random() * 1084) + 1;
+    const imageUrl = `https://picsum.photos/id/${randomImageId}/400/300`;
+    
+    // Generate new ID based on existing products
+    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+    
+    // Create the new product with image and ID
+    const newProduct = {
+      id: newId,
+      ...product,
+      image: imageUrl
+    };
+    
+    products.push(newProduct);
+    fs.writeFileSync(productsPath, JSON.stringify(products, null, 2));
+    res.json({ success: true, data: newProduct });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 // ============================================================================
