@@ -57,6 +57,9 @@ import {
 // Import utilities
 import { validateConfig, formatAmount } from './api/utils.js';
 
+// Import Payment Link operations
+import { generatePaymentLink } from './api/paymentLink.js';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -179,6 +182,7 @@ app.post('/api/products/add', (req, res) => {
     // Create the new product with image and ID
     const newProduct = {
       id: newId,
+      sellerWalletAddress: defaultConfig.walletAddressUrl,
       ...product,
       image: imageUrl
     };
@@ -190,6 +194,130 @@ app.post('/api/products/add', (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
+// get product by id from products.json
+app.get('/api/products/:id', (req, res) => {
+  const { id } = req.params;
+  const productsPath = path.join(__dirname, 'products.json');
+  const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+  const product = products.find(p => p.id == id);
+  res.json(product);
+});
+
+
+//webhook that receives product id and refereral id to referalJson
+app.get('/api/referal/webhook', (req, res) => {
+  try {
+    const { productId, refereralId } = req.query;
+    
+    // Validate required parameters
+    if (!productId || !refereralId) {
+      return res.status(400).json({
+        success: false,
+        error: 'productId and refereralId are required'
+      });
+    }
+    
+    const referalSalesPath = path.join(__dirname, 'referalSales.json');
+    
+    // Read existing referral sales data
+    let referalSales = [];
+    try {
+      const fileContent = fs.readFileSync(referalSalesPath, 'utf8');
+      if (fileContent.trim()) {
+        referalSales = JSON.parse(fileContent);
+      }
+    } catch (error) {
+      // File doesn't exist or is invalid JSON, start with empty array
+      referalSales = [];
+    }
+    
+    // Check if combination already exists
+    const existingEntry = referalSales.find(
+      entry => entry.productId === productId && entry.refereralId === refereralId
+    );
+    
+    let currentCount;
+    if (existingEntry) {
+      // Increment count if entry exists
+      existingEntry.count += 1;
+      currentCount = existingEntry.count;
+    } else {
+      // Register new combination with count 1
+      const newEntry = {
+        productId,
+        refereralId,
+        count: 1
+      };
+      referalSales.push(newEntry);
+      currentCount = 1;
+    }
+    
+    // Write back to file
+    fs.writeFileSync(referalSalesPath, JSON.stringify(referalSales, null, 2));
+    
+    res.json({
+      success: true,
+      productId,
+      refereralId,
+      count: currentCount
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+//Endpoint that generates a link to buy on openpayment that recieves mywallet and product id (takes seller wallet from products.json)
+app.get('/api/referal/link', async (req, res) => {
+  try {
+    const { mywallet, productId } = req.query;
+    
+    // Validate required parameters
+    if (!mywallet || !productId) {
+      return res.status(400).json({
+        success: false,
+        error: 'mywallet and productId are required'
+      });
+    }
+    
+    // Get product from products.json
+    const productsPath = path.join(__dirname, 'products.json');
+    const products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+    const product = products.find(p => p.id == productId);
+    
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        error: 'Product not found'
+      });
+    }
+    
+    // Generate payment link using the module
+    const paymentLink = await generatePaymentLink(
+      product.price,
+      mywallet,
+      product.sellerWalletAddress,
+      defaultConfig
+    );
+    
+    // Return the payment link
+    res.json({
+      success: true,
+      link: paymentLink
+    });
+    
+  } catch (error) {
+    console.error('Error generating payment link:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
 
 // ============================================================================
 // WALLET ADDRESS ENDPOINTS
@@ -221,6 +349,8 @@ app.post('/api/wallet/info', async (req, res) => {
     });
   }
 });
+
+
 
 /**
  * GET /api/wallet/keys
